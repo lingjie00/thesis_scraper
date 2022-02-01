@@ -1,3 +1,6 @@
 .DS_Store
 *.csv
 *.json
+*.ini
+data/*
+output/*

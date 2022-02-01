@@ -1,12 +1,16 @@
 """Extract a sample API request from Finage."""
 import logging
 import json
+import configparser
 import requests
 
 logging.basicConfig(level=logging.INFO)
 
+config = configparser.ConfigParser()
+config.read("key.ini")
+
 # API key
-_API_KEY = "API_KEY14IDEPF7SA61VQ8243EN1FOJTLXQT4T0"
+_API_KEY = config["DEFAULT"]["API"]
 
 # symbol
 symbol = "ULVR"
@@ -31,6 +35,6 @@ content = response.json()
 
 logging.info(content)
 
-with open(f"{symbol}_price.json", "w") as file:
+with open(f"output/{symbol}_price.json", "w") as file:
     out = json.dumps(content)
     file.write(out)

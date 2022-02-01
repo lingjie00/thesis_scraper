@@ -1,24 +1,28 @@
 """Extract a sample API request from Finage."""
 import logging
 import json
+import configparser
 import requests
 
 logging.basicConfig(level=logging.INFO)
 
-# API key
-_API = "API_KEY11X3NFOGGAN3NGXWKXHP58NBWQ7IPFKB"
+config = configparser.ConfigParser()
+config.read("key.ini")
 
-# firm
-firm = "ULVR.L"
+# API key
+_API = config["DEFAULT"]["API"]
+
+# symbol
+symbol = "ULVR.L"
 
 # website
 site = "https://api.finage.co.uk/income-statement/"
 
-# period
+# period (quarter or annual)
 period = "quarter"
 
 # link
-link = site + firm + "?&period=" + period + "&apikey=" + _API
+link = site + symbol + "?&period=" + period + "&apikey=" + _API
 
 logging.info(f"Request link {link}")
 
@@ -28,6 +32,6 @@ content = response.json()
 
 logging.info(content)
 
-with open(f"{firm}.json", "w") as file:
+with open(f"output/{symbol}.json", "w") as file:
     out = json.dumps(content)
     file.write(out)

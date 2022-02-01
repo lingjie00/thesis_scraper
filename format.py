@@ -4,22 +4,17 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
-annual = pd.read_json("unilever_annual.json")
+fundamental = pd.read_json("output/ULVR.L.json")
 
-logging.info(annual)
+logging.info(fundamental)
 
-annual.to_csv("unilever_annual.csv", index=False)
+fundamental.to_csv("output/unilever_fundamental.csv", index=False)
 
-quarter = pd.read_json("unilever_quarter.json")
-
-logging.info(quarter)
-
-quarter.to_csv("unilever_quarter.csv", index=False)
-
-with open("unilever_price.json", "r") as file:
+with open("output/ULVR_price.json", "r") as file:
     loaded = json.loads(file.read())
     price = pd.json_normalize(loaded["results"])
+    price["symbol"] = "ULVR"
 
 logging.info(price)
 
-price.to_csv("unilever_price.csv", index=False)
+price.to_csv("output/unilever_price.csv", index=False)
