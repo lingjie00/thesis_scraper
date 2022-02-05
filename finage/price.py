@@ -1,8 +1,6 @@
 """Extract a sample API request from Finage."""
 import logging
 import json
-import csv
-import configparser
 import requests
 
 
@@ -51,29 +49,3 @@ class Price:
 
         finally:
             return self
-
-
-def main():
-    """Run price extract"""
-    logging.basicConfig(filename="price.log", level=logging.INFO)
-
-    config = configparser.ConfigParser()
-    config.read("data/key.ini")
-
-    # API key
-    _API_KEY = config["DEFAULT"]["API"]
-
-    extractor = Price(API=_API_KEY, filepath="output/price")
-
-    with open("data/LSE_symbols.csv", "r") as file:
-        reader = csv.reader(file, delimiter=",")
-        for row in reader:
-            # symbol stored in first column
-            symbol = row[0]
-            logging.debug(symbol)
-            extractor.extract(symbol=symbol)
-
-
-if __name__ == "__main__":
-    # run extraction
-    main()

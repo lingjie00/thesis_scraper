@@ -5,3 +5,6 @@
 data/*
 output/*
 *.log
+*/__pycache__/*
+*/finage.egg-info/*
+*/.ipynb_checkpoints/*

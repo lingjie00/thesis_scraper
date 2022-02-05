@@ -1,8 +1,6 @@
 """Extract fundamental data from Finage."""
 import logging
 import json
-import csv
-import configparser
 import requests
 
 
@@ -45,32 +43,3 @@ class Fundamental:
 
         finally:
             return self
-
-
-def main():
-    """Run extraction."""
-    logging.basicConfig(filename="fundamental.log", level=logging.INFO)
-
-    config = configparser.ConfigParser()
-    config.read("data/key.ini")
-
-    # API key
-    _API = config["DEFAULT"]["API"]
-
-    # filepath
-    filepath = "output/fundamental"
-
-    extractor = Fundamental(_API, filepath)
-
-    with open("data/LSE_symbols.csv", "r") as file:
-        reader = csv.reader(file, delimiter=",")
-        for row in reader:
-            # symbol stored in first column
-            symbol = row[0]
-            logging.debug(symbol)
-            extractor.extract(symbol=symbol)
-
-
-if __name__ == "__main__":
-    # run extraction
-    main()
