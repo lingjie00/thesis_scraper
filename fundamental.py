@@ -38,6 +38,8 @@ class Fundamental:
             logging.info(f"{symbol} fundamental data extracted")
 
         except Exception as e:
+            if isinstance(e, KeyboardInterrupt):
+                raise KeyboardInterrupt()
             logging.info(f"{symbol} failed to extract with")
             logging.info(e)
 

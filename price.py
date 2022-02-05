@@ -23,8 +23,8 @@ class Price:
     def extract(self, symbol):
         try:
             # link
-            link = self.site + symbol + "/" +\
-                self.time + "/" +\
+            link = self.site + symbol +\
+                "/" + self.time + "/" +\
                 self.start + "/" + self.to +\
                 "?apikey=" + self.API + "&limit=5000"
 
