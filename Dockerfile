@@ -4,6 +4,7 @@ WORKDIR /docker_deployment
 
 COPY . .
 
-RUN pip install -r requirements/dev.txt
+# install the finage package
+RUN pip install --no-cache-dir .
 
-CMD ["python", "finage/finage.py"]
+CMD ["python", "main.py"]

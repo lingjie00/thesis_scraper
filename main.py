@@ -3,6 +3,7 @@ import logging
 
 from finage import extract
 
+"""Set up the logs."""
 logging.basicConfig(
     filename="extract.log",
     format='%(asctime)s %(message)s',
@@ -10,8 +11,13 @@ logging.basicConfig(
 
 
 def main():
-    # notebook has a different working dir from project
-    relative_path = "../"
+    """Runs the scaper.
+
+    relative_path: change relative path if files required is
+        stored in different places
+    test_flag: if running test symbols only
+    csv_flag: if save output as csv files (or json files)
+        """
     relative_path = ""
     test_flag: bool = False
     csv_flag: bool = True
