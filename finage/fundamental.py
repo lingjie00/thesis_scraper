@@ -52,7 +52,7 @@ class Fundamental(Extractor):
             logging.info(f"content is empty {content}")
             return self
 
-        path = self._filepath + "fundamental.csv"
+        path = self._filepath + f"fundamental_{self.period}.csv"
 
         with open(path, "a") as file:
             """Default: append to CSV"""
