@@ -47,10 +47,10 @@ def main():
         price_filepath=price_filepath,
         output_format="csv" if csv_flag else "json",
         api_file=api_file,
-        time="1min",
-        period="quarter",
+        time="1day",
+        period="annual",
         run_price=True,
-        run_fundamental=False
+        run_fundamental=True
     )
 
     print("Done")
